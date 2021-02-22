@@ -4,23 +4,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Uploading</title>
+    <title>Create Product</title>
 </head>
  
 <body>
-    <h1>To Upload Image on mongoDB</h1>
+    <h1>Enter the data of your product</h1>
     <hr>
     <div>
         <form action="/" method="POST" enctype="multipart/form-data">
             <div>
-                <label for="name">Image Title</label>
-                <input type="text" id="name" placeholder="Name"
-                       value="" name="name" required>
+                <label for="name">Product name:</label>
+                <input type="text" id="name" placeholder="Name" value="" name="name" required>
+            </div> 
+            <div>
+                <label>Type d’image</label>
+                <select id="typeImg">
+                    <option value="PassionFroid">photo PassionFroid</option>
+                    <option value="fournisseur">Photo fournisseur</option>
+                    <option value="logo">logo</option>
+                </select>
             </div>
             <div>
-                <label for="desc">Image Description</label>
-                <textarea id="desc" name="pesc" value="" rows="2"
-                          placeholder="Description" required>
+                <label>Photo avec produit?</label>
+                <select id="withProduct">
+                    <option value="true">oui</option>
+                    <option value="false">non</option>
+                </select>
+            </div>
+            <div>
+                <label>Photo des produis avec humain?</label>
+                <select id="withHumain">
+                    <option value="true">oui</option>
+                    <option value="false">non</option>
+                </select>
+            </div>
+            <div>
+                <label>Institutionnelle?</label>
+                <select id="institutionnelle">
+                    <option value="true">oui</option>
+                    <option value="false">non</option>
+                </select>
+            </div>
+            <div>
+                <label>Format:</label>
+                <select id="selectFormat">
+                    <option value="vertical">vertical</option>
+                    <option value="horizontal">horizontal</option>
+                </select>
+            </div>
+            <div>
+                <label>Crédits photos: </label>
+                <input type="text" id="credits" placeholder="Nom de l’auteur ou banque d’images" name="credits">
+            </div>
+            <div>
+                <label>Droits d’utilisation limités :</label>
+                <select id="selectDroits">
+                    <option value="true">oui</option>
+                    <option value="false">non</option>
+                </select>
+            </div> 
+            <div>
+                <label>Copyright: </label>
+                <input type="text" id="copyright" placeholder="Copyright" name="copyright">
+            </div>
+            <div>
+                <label>Date: </label>
+                <input type="date" id="date" name="date">
+            </div>
+            <div>
+                <label for="desc">Tags</label>
+                <textarea id="tags" name="tags" value="" rows="2" placeholder="Tags" required>
                 </textarea>
             </div>
             <div>

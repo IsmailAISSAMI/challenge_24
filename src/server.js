@@ -45,7 +45,16 @@ app.post('/', upload.single('image'), (req, res, next) => {
  
     var obj = {
         name: req.body.name,
-        desc: req.body.desc,
+        typeImg: req.body.typeImg,
+        withProduct: req.body.withProduct,
+        withHumain: req.body.withHumain,
+        institutionnelle: req.body.institutionnelle,
+        selectFormat: req.body.selectFormat,
+        credits: req.body.credits,
+        selectDroits: req.body.selectDroits,
+        copyright: req.body.copyright,
+        date: req.body.date,
+        tags: req.body.tags,
         img: {
             data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
             contentType: 'image/png'
@@ -56,7 +65,7 @@ app.post('/', upload.single('image'), (req, res, next) => {
             console.log(err);
         }
         else {
-            // item.save();
+            item.save();
             res.redirect('/');
         }
     });
