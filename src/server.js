@@ -52,7 +52,8 @@ app.get('/addProduct', (req, res) => {
     Product.find({}, (err, items) => {
         if (err) {
             console.log(err);
-            res.status(500).send('An error occurred', err);
+            // res.status(500).send('An error occurred', err);
+            res.status(status).send(body)
         }
         else {
             res.render('addProducts', { items });
