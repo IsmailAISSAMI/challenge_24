@@ -30,6 +30,10 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 
 
+app.get('/', (req, res) => {
+    res.render('index');
+});
+
 app.get('/addProduct', (req, res) => {
     Product.find({}, (err, items) => {
         if (err) {
@@ -37,18 +41,12 @@ app.get('/addProduct', (req, res) => {
             res.status(500).send('An error occurred', err);
         }
         else {
-            res.render('formulaire', { items });
+            res.render('addProducts', { items });
         }
     });
 });
 
-app.get('/', (req, res) => {
-    
-    res.render('search');
-        
-});
-
-app.post('/', upload.single('image'), (req, res, next) => {
+app.post('/addProduct', upload.single('image'), (req, res, next) => {
  
     var obj = {
         name: req.body.name,
