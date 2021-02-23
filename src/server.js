@@ -61,6 +61,21 @@ app.get('/addProduct', (req, res) => {
     });
 });
 
+app.post('/searchProduct', (req, res) => {
+    const query = req.body.search;
+
+    Product.find({'name': query}, (err, items) => {
+        if (err) {
+            console.log(err);
+             res.status(500).send('An error occurred', err);
+            //res.status(status).send(body)
+        }
+        else {
+            res.render('searchProducts', { items });
+        }
+    });
+});
+
 app.post('/addProduct', upload.single('image'), (req, res, next) => {
  
     var obj = {
