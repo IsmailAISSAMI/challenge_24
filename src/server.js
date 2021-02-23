@@ -10,6 +10,8 @@ const Product = require('./models/product')
 
 
 const app = express()
+var port = process.env.PORT || '3000'
+
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -87,7 +89,6 @@ app.post('/addProduct', upload.single('image'), (req, res, next) => {
     })
 });
 
-var port = process.env.PORT || '3000'
 app.listen(port, err => {
     if (err)
         throw err
