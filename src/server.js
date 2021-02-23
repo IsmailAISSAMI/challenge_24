@@ -10,6 +10,7 @@ const Product = require('./models/product')
 
 
 const app = express()
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
  
@@ -29,16 +30,22 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 
 
-app.get('/', (req, res) => {
+app.get('/addProduct', (req, res) => {
     Product.find({}, (err, items) => {
         if (err) {
             console.log(err);
             res.status(500).send('An error occurred', err);
         }
         else {
-            res.render('productsPage', { items: items });
+            res.render('formulaire', { items });
         }
     });
+});
+
+app.get('/', (req, res) => {
+    
+    res.render('search');
+        
 });
 
 app.post('/', upload.single('image'), (req, res, next) => {
@@ -60,15 +67,14 @@ app.post('/', upload.single('image'), (req, res, next) => {
             contentType: 'image/png'
         }
     }
-    Product.create(obj, (err, item) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            item.save();
-            res.redirect('/');
-        }
-    });
+
+    const product = new Product(obj)
+    product.save().then((result)=>{
+        console.log("A new product is added to database!\n", result)
+        res.redirect('/')
+    }).catch((e)=>{
+        console.log("ERROR: ", e)
+    })
 });
 
 var port = process.env.PORT || '3000'

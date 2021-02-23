@@ -13,7 +13,7 @@
     <div>
         <form action="/" method="POST" enctype="multipart/form-data">
             <div>
-                <label for="name">Product name:</label>
+                <label for="name">Nom Produit:</label>
                 <input type="text" id="name" placeholder="Name" value="" name="name" required>
             </div> 
             <div>
@@ -91,19 +91,13 @@
  
     <h1>Uploaded Images</h1>
     <div>
-        <% items.forEach(function(image) { %>
+        <% items.forEach(function(product) { %>
         <div>
             <div>
-                <img src="data:image/<%=image.img.contentType%>;base64,
-                     <%=image.img.data.toString('base64')%>">
-                <div>
-                    <h5><%= image.name %></h5>
-                     
- 
-<p><%= image.desc %></p>
- 
- 
-                </div>
+                <h3><%= product.name %></h3>
+                <img src="data:image/<%=product.img.contentType%>;base64,
+                     <%=product.img.data.toString('base64')%>">
+
             </div>
         </div>
         <% }) %>
