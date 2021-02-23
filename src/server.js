@@ -34,6 +34,18 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
+app.get('/getProducts', (req, res) => {
+    Product.find({}, (err, items) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send('An error occurred', err);
+        }
+        else {
+            res.render('getProducts', { items });
+        }
+    });
+});
+
 app.get('/addProduct', (req, res) => {
     Product.find({}, (err, items) => {
         if (err) {
@@ -69,7 +81,7 @@ app.post('/addProduct', upload.single('image'), (req, res, next) => {
     const product = new Product(obj)
     product.save().then((result)=>{
         console.log("A new product is added to database!\n", result)
-        res.redirect('/')
+        res.redirect('/getProducts')
     }).catch((e)=>{
         console.log("ERROR: ", e)
     })
